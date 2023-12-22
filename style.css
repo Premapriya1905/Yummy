@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+
+html body {
+    background-color: rgb(5, 92, 126);
+}
+
+#background {
+    height: 92.3vh;
+    width: 100vw;
+}
+
+#welcome1 {
+    margin-top: 1vw;
+    text-align: center;
+    color: white;
+    font-size: 2.5vw;
+}
+
+#welcome2 {
+    margin-top: 1.5vw;
+    margin-right: 2vw;
+    text-align: center;
+    color: white;
+    font-size: 1.2vw;
+}
+
+#meal {
+    margin-top: 1vw;
+    margin-left: 20vw;
+    text-align: left;
+    color: white;
+    font-size: 1.5vw;
+}
+
+#biryani {
+    height: 18vh;
+    width: 14vw;
+    border-radius: 1vw;
+    margin-left: 42vw;
+}
+
+#name {
+    margin-top: 1.5vw;
+    text-align: center;
+    color: white;
+    font-size: 1vw;
+}
+
+#searchedmeals {
+    color: white;
+    font-size: 1.5vw;
+    margin-left: 5vw;
+}
+#searchmeals{
+    color: white;
+}
+
+.navbar-collapse {
+    background-color: black;
+}
+#line{
+    border: 1px solid  white;
+    
+}
+#div{
+    border: 2px solid white;
+    border-radius: 1vw;
+    background-color: black;
+    width:13vw;
+    height: 13vw;
+    margin-left:43vw;
+}
+#word{
+    text-align: center;
+    color: white;
+    margin-top: 5vw;
+}
+
+#searchedmeals {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.meal-container {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.meal-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 1024px) {
+    #welcome1 {
+        font-size: 6vw;
+    }
+    #welcome2 {
+        font-size: 3.5vw;
+    }
+    #meal {
+        font-size: 5vw;
+        margin-left: 2vw;
+
+    }
+    #biryani {
+        height: 20vh;
+        width: 25vw;
+        position: absolute;
+        right: 35vw;
+        margin-top: 5vw;
+    }
+    #name {
+        font-size: 3.5vw;
+        bottom: 150vh;
+        left: 50vw;
+        margin-top: 45vw;
+    }
+    #searchedmeals{
+        font-size: 4vw;
+        height: 3vw;
+        width: 3vw;
+        margin-left: 15vw;
+    }
+    #div{
+        height: 30vw;
+        width: 30vw;
+        margin-left: 32vw;
+    }
+    #word{
+        font-size: 3.5vw;
+    }
+}
+
+#div{
+    background-image: url("https://media.istockphoto.com/id/856489856/vector/christmas-vector-seamless-pattern.jpg?s=612x612&w=0&k=20&c=t1qpM4utKxAlWPTnZS59smlRxjTV3RKo97La23yl2Ws=");
+}

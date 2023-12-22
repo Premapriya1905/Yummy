@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yummy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-black">
+        <div class="container-fluid">
+            <img class="navbar-brand" src="./assets/yum.png" alt="" style="width: 60px; height: auto;">
+            <button id="ham" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a style="color: white;" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Contact
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Ph.no:7358236835</a></li>
+                            <li><a class="dropdown-item" href="#">Ph.no:9498407843</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="https://ig.me/j/AbaRp-mxrUnZhNBR/">Insta-Id: Yummy Ideas</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Enter</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <p id="welcome1">Welcome Homiess!</p>
+    <p id="welcome2">"Welcome to our yummy kitchen! Discover a world of delightful  <br> recipes and culinary inspiration. Explore, experiment, <br>and savor the joy of creating memorable meals."</p>
+    <hr id="line">
+    <p id="meal">Surprise Meal : Tap the pandora box to know what's special today!!</p>
+    <div id="div">
+        <h4 id="word">Food Pandora</h4>
+    </div>
+    <hr id="line">
+    <div id="searchmeals"><h4 >Searched Categories:<h4></div>
+    <div id="searchedmeals"></div>
+
+
+
+    <div class="modal" id="recipeModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="recipeModalLabel">Recipe Details</h5>
+                </div>
+                <div class="modal-body" id="recipeModalBody">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const apiMealUrl = 'https://www.themealdb.com/api/json/v1/1/random.php';
+        const surpriseDiv = document.getElementById('div');
+        const surpriseWord = document.getElementById('word');
+        const Mealname = document.getElementById('name');
+        const recipeModal = new bootstrap.Modal(document.getElementById('recipeModal'));
+
+        
+
+        surpriseDiv.addEventListener('click', function () {
+            fetchRandomMeal();
+            recipeModal.show();
+        });
+
+        function fetchRandomMeal() {
+            fetch(apiMealUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.meals && data.meals.length > 0) {
+                        const randomImageUrl = data.meals[0].strMealThumb;
+                        const randomMealName = data.meals[0].strMeal;
+
+                        surpriseWord.textContent = randomMealName;
+
+                        displayRecipeDetails(data.meals[0]);
+                    } else {
+                        console.error('Failed to fetch random meal details.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching random meal details:', error);
+                });
+        }
+
+        function displayRecipeDetails(meal) {
+            const modalBody = document.getElementById('recipeModalBody');
+            modalBody.innerHTML = `
+                <h1> ${meal.strMeal}</h1>
+                <img src="${meal.strMealThumb}" alt="${meal.strMeal}" class="img-fluid mb-2">
+                <h4>Ingredients:</h4>
+                <ul>
+                    ${getIngredientsList(meal)}
+                </ul>
+                <h4>Instructions:</h4>
+                <p>${meal.strInstructions}</p>
+            `;
+        }
+
+        function getIngredientsList(meal) {
+            let ingredientsList = '';
+            for (let i = 1; i <= 20; i++) {
+                const ingredient = meal[`strIngredient${i}`];
+                const measure = meal[`strMeasure${i}`];
+                if (ingredient && ingredient.trim() !== '' && measure && measure.trim() !== '') {
+                    ingredientsList += `<li>${measure} ${ingredient}</li>`;
+                }
+            }
+            return ingredientsList;
+        }
+    });
+</script>
+
+
+<script src="app.js"></script>
+</body>
+</html>
+
+
+
+
+
